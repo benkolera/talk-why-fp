@@ -273,8 +273,7 @@
     <script src="http://localhost:35729/livereload.js"></script>
 
 		<script>
-
-      //So the overview button on my remote works in here.
+      //Couldn't get the keyboard config to work, so lets have this hack instead. ;)
       function extraButtons(event) {
         if( event.keyCode == 118 ) {
           Reveal.toggleOverview()
@@ -289,6 +288,9 @@
 				progress: true,
 				history: true,
 				center: true,
+        keyboard: {
+          118: function () { Reveal.toggleOverview() }
+        },
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
@@ -300,7 +302,9 @@
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() {  return !!document.body.classList; }  }
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() {  return !!document.body.classList; }  },
+          { src: 'socket.io/socket.io.js', async: true },
+          { src: 'plugin/notes-server/client.js', async: true }
 					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
 					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
