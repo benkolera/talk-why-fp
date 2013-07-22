@@ -1,0 +1,31 @@
+@import "../template/mixins";
+@import "../template/settings";
+
+@font-face {
+  font-family: 'Bangers';
+  src: url('../../../lib/font/Bangers.ttf')
+}
+@import url(http://fonts.googleapis.com/css?family=Inconsolata:400);
+
+$mainFont: 'Inconsolata', sans-serif;
+$mainColor: #8BB9D2;
+$headingFont: 'Bangers', cursive;
+$headingColor: #4A9DC9;
+$headingTextShadow: none;
+$backgroundColor: #8BB9D2;
+$linkColor: #377696;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: #4A9FC9;
+$headingTextTransform: none;
+
+@mixin bodyBackground() {
+	@include radial-gradient(  #1B3949 , #314696 );
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal p {
+  margin-bottom: 20px;
+}

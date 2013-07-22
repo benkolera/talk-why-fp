@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Why FP? - BFPG 2013-07-23</title>
+
+		<meta name="description" 
+          content="A beginner level intro to the principles and benefits of FP">
+		<meta name="author" content="Ben Kolera">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" 
+          content="black-translucent" 
+          />
+
+		<meta name="viewport" 
+          content="width=device-width, 
+                   initial-scale=1.0, 
+                   maximum-scale=1.0, 
+                   user-scalable=no"
+          />
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/bens.css" id="theme">
+
+		<link rel="stylesheet" href="lib/css/mono-blue.css">
+    <!-- <link rel="stylesheet" href="lib/css/monokai_sublime.css"> -->
+  	<!-- <link rel="stylesheet" href="lib/css/tomorrow-night-blue.css"> -->
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( 
+        '<link rel="stylesheet" href="css/print/' + 
+        ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + 
+        '.css" type="text/css" media="print">' 
+      );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body onkeypress="extraButtons(event)">
+		<div class="reveal">
+			<div class="slides">
+        <section>
+          <h1>Why FP?</h1>
+          <p>Brisbane Functional Programming Group - <date>2013-07-23</date></p>
+        </section>
+        <section>
+          <section>
+            <h2>What makes good code?</h2>
+            <aside class="notes">
+              <ul>
+                <li>
+                  Lets just set the tone of the talk by quickly talking about
+                  the top two properties that I like to see in software systems
+                  that I need to maintain.
+                </li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>It needs to be DRY</h2>
+            <p>Logic shouldn't be repeated in a system.</p>
+            <p>Create abstractions for common patterns.</p>
+            <p>High level abstractions usually take logic as parameters.</p>
+            <aside class="notes">
+              <ul>
+                <li>
+                  We want code to not repeat itself, so when we need to make 
+                  a change we don't have to make it in multiple places.
+                </li>
+                <li>
+                  To do this we create abstractions, and the most powerful 
+                  abstractions are ones that abstract over code rather than 
+                  data.
+                </li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>DRY Code, OO style</h2>
+            <p>Behaviour is abstracted over with objects:
+              <ul>
+                <li>Decorators</li>
+                <li>Visitors</li>
+                <li>SimpleBeanFactoryAwareAspectInstanceFactory !!!</li>
+              </ul>
+            </p>
+            <br />
+            <p>These compose awkwardly, even with mixins.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>It needs to be reasoned about</h2>
+            <p>Reading ≠ Comprehension</p>
+            <p>
+              To make a change, have to load up all related parts into brain 
+              to make the change safely. 
+            </p>
+            <p>
+              Should be easy to look at a bit of code and see what is related.
+            </p>
+            <p>
+              If you need to open up a debugger to comprehend things, 
+              you've already lost (IMHO).
+            </p>
+            <aside class="notes">
+              <ul>
+                <li>
+                  Once you've found that one line of code you've got to figure
+                  out how changing that piece of code will affect other parts 
+                  of the system.
+                </li>
+                <li>
+                  This is where simple to read code can actually be very hard to 
+                  reason about (lots of shared state) and code that is dense and
+                  hard to read at a glance can be easy to reason about.
+                </li>
+                <li>
+                  It's all about having clean, explicit interfaces and boundaries
+                  of concern with minimal sharing
+                </li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Good code, grossly trivialised</h2>
+            <p>Built from composable abstractions so we don't repeat ourselves.</p>
+            <p>
+              Coupling of these abstractions should be minimal and explicit so 
+              it can be understood.
+            </p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>What is Functional Programming?</h2>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Programming with functions! <small>duh!</small></h2>
+            <p>Break things up into lots of small reusable functions.</p>
+            <p>Compose those functions together into bigger functions.</p>
+            <p>Pass functions to other (higher order) functions.</p>
+            <p>Sane composibility is paramount.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Lazy vs Eager/Strict Evaluation</h2>
+            <p>Laziness is</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Lazy vs Eager: Language Comparison</h2>
+            <p>Haskell is lazy by default.</p>
+            <p>Clojure is an eager language, but has lazy collections & some lazy library functions.</p>
+            <p>Scala & OCaml are eager but have laziness language constructs.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Pure vs Impure</h2>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>          
+          <section>
+            <h2>Statically vs Dynamically Typed</h2>
+            <aside class="notes">
+              <ul>
+                
+              </ul>
+            </aside>
+          </section>
+
+        </section>        
+        <section>
+          <section>
+            <h2>Lets get into some Examples!</h2>
+            <aside class="notes">
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Collection Libraries</h2>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Parser Combinators</h2>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Typeclasses: Compositional Adhoc Polymorphism</h2>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Futures</h2>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>GHC Optimisations</h2>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Debunking some Myths</h2>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Pure FP Means no Side effects</h2>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+    <script src="http://localhost:35729/livereload.js"></script>
+
+		<script>
+
+      //So the overview button on my remote works in here.
+      function extraButtons(event) {
+        if( event.keyCode == 118 ) {
+          Reveal.toggleOverview()
+        }
+        return true;
+      }
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() {  return !!document.body.classList; }  }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+		</script>
+
+	</body>
+</html>
