@@ -135,3 +135,9 @@ body {
 
 .reveal p {
   margin-bottom: 20px; }
+
+.reveal pre {
+  width: 100%; }
+
+.reveal pre code {
+  padding: 10px; }

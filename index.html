@@ -6,21 +6,13 @@
 
 		<title>Why FP? - BFPG 2013-07-23</title>
 
-		<meta name="description" 
-          content="A beginner level intro to the principles and benefits of FP">
+		<meta name="description" content="A beginner level intro to the principles and benefits of FP">
 		<meta name="author" content="Ben Kolera">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" 
-          content="black-translucent" 
-          />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" 
-          content="width=device-width, 
-                   initial-scale=1.0, 
-                   maximum-scale=1.0, 
-                   user-scalable=no"
-          />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 		<link rel="stylesheet" href="css/reveal.min.css">
 		<link rel="stylesheet" href="css/theme/bens.css" id="theme">
@@ -30,11 +22,7 @@
   	<!-- <link rel="stylesheet" href="lib/css/tomorrow-night-blue.css"> -->
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
-			document.write( 
-        '<link rel="stylesheet" href="css/print/' + 
-        ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + 
-        '.css" type="text/css" media="print">' 
-      );
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
 		</script>
 
 		<!--[if lt IE 9]>
@@ -54,30 +42,19 @@
             <h2>What makes good code?</h2>
             <aside class="notes">
               <ul>
-                <li>
-                  Lets just set the tone of the talk by quickly talking about
-                  the top two properties that I like to see in software systems
-                  that I need to maintain.
-                </li>
+                <li>Lets just set the tone of the talk by quickly talking about the top two properties that I like to see in software systems that I need to maintain. </li>
               </ul>
             </aside>
           </section>
           <section>
             <h2>It needs to be DRY</h2>
             <p>Logic shouldn't be repeated in a system.</p>
-            <p>Create abstractions for common patterns.</p>
-            <p>High level abstractions usually take logic as parameters.</p>
+            <p class="fragment">Create abstractions for common patterns.</p>
+            <p class="fragment">High level abstractions usually take logic as parameters.</p>
             <aside class="notes">
               <ul>
-                <li>
-                  We want code to not repeat itself, so when we need to make 
-                  a change we don't have to make it in multiple places.
-                </li>
-                <li>
-                  To do this we create abstractions, and the most powerful 
-                  abstractions are ones that abstract over code rather than 
-                  data.
-                </li>
+                <li>We want code to not repeat itself, so when we need to make a change we don't have to make it in multiple places.</li>
+                <li> To do this we create abstractions, and the most powerful abstractions are ones that abstract over code rather than data. </li>
               </ul>
             </aside>
           </section>
@@ -91,7 +68,7 @@
               </ul>
             </p>
             <br />
-            <p>These compose awkwardly, even with mixins.</p>
+            <p>Even with mixins, these compose awkwardly.</p>
             <aside class="notes">
               <ul>
               </ul>
@@ -100,43 +77,22 @@
           <section>
             <h2>It needs to be reasoned about</h2>
             <p>Reading ≠ Comprehension</p>
-            <p>
-              To make a change, have to load up all related parts into brain 
-              to make the change safely. 
-            </p>
-            <p>
-              Should be easy to look at a bit of code and see what is related.
-            </p>
-            <p>
-              If you need to open up a debugger to comprehend things, 
-              you've already lost (IMHO).
-            </p>
+            <p>Reasoning about code requires knowing and thinking about all dependencies.</p>
+            <p>Coupling should minimised and explicit.</p>
+            <p>Coupling to time is most difficult to reason about.</p>
+            <p>If you need to open up a debugger to comprehend things, you've already lost (IMHO).</p>
             <aside class="notes">
               <ul>
-                <li>
-                  Once you've found that one line of code you've got to figure
-                  out how changing that piece of code will affect other parts 
-                  of the system.
-                </li>
-                <li>
-                  This is where simple to read code can actually be very hard to 
-                  reason about (lots of shared state) and code that is dense and
-                  hard to read at a glance can be easy to reason about.
-                </li>
-                <li>
-                  It's all about having clean, explicit interfaces and boundaries
-                  of concern with minimal sharing
-                </li>
+                <li>Once you've found that one line of code you've got to figure out how changing that piece of code will affect other parts of the system.</li>
+                <li>This is where simple to read code can actually be very hard to reason about (lots of shared state) and code that is dense and hard to read at a glance can be easy to reason about.</li>
+                <li>It's all about having clean, explicit interfaces and boundaries of concern with minimal sharing.</li>
               </ul>
             </aside>
           </section>
           <section>
             <h2>Good code, grossly trivialised</h2>
             <p>Built from composable abstractions so we don't repeat ourselves.</p>
-            <p>
-              Coupling of these abstractions should be minimal and explicit so 
-              it can be understood.
-            </p>
+            <p>Coupling of these abstractions should be minimal and explicit so they can be understood.</p>
             <aside class="notes">
               <ul>
               </ul>
@@ -156,15 +112,73 @@
             <p>Break things up into lots of small reusable functions.</p>
             <p>Compose those functions together into bigger functions.</p>
             <p>Pass functions to other (higher order) functions.</p>
-            <p>Sane composibility is paramount.</p>
             <aside class="notes">
               <ul>
               </ul>
             </aside>
           </section>
           <section>
-            <h2>Lazy vs Eager/Strict Evaluation</h2>
-            <p>Laziness is</p>
+            <h2>Sounds Easy?</h2>
+            <p>Not quite!</p>
+            <p>Because you are passing functions to functions, you have less control over execution order.</p>
+            <p>It makes weird mutation bugs even weirder and difficult to figure out!</p>
+            <p>Coding style needs to be changed to not rely on execution order.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Pure / Referencially Transparent Functions</h2>
+            <p>Functions that can be replaced with it's value without changing program behaviour.</p>
+            <p><code>1 + 1</code> is always <code>2</code>.</p>
+            <p>Functions that mutate structures in place but don't leak the mutable instance to the caller are pure too!</p>
+            <p>These functions are the building blocks of safe FP abstractions.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>"Type Assisted Referential Transparency"</h2>
+            <p>"Pure vs Impure Langs/FP" is a false dichotomy.</p>
+            <p>Side effects are always useful, regardless of the paradigm.</p>
+            <p>Haskell has side effects, just explicitly segregates pure from impure functions with types.</p>
+            <p>Conversely, purity is still a concern in "impure" languages, it is just implicit.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Favour Immutability</h2>
+            <p>Effective Java, written 12 years ago, recommends this.</p>
+            <p>Variables are a large cause of bugs, regardless of PL.</p>
+            <p>If something changes, anything that reads it is coupled to time / execution order.</p>
+            <p>In FP, we want to feed values through pipelines of functions without needing to build copying into our abstractions.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Immutability - Language Comparison</h2>
+            <p>All refs and collections are immutable by default.</p>
+            <p>Haskell: Mutable Refs and STM in IO code only</p>
+            <p>Clojure: STM only and 'Transient' data structures.</p>
+            <p>Scala: Variables anywhere. Also has STM.</p>
+            <p>OCaml: Unrestricted Refs and STM.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Lazy Evaluation</h2>
+            <p>Lazy evaluation will only execute a computation when a value is needed.</p>
+            <p>Can describe a computation without caring about it is needed without wasting CPU cycles.</p>
+            <p>Wonderful for abstractions relating to memoization or infinite structures.</p>
+            <p>Code cannot be coupled to time given no guarantees to execution order.</p>
             <aside class="notes">
               <ul>
               </ul>
@@ -181,32 +195,186 @@
             </aside>
           </section>
           <section>
-            <h2>Pure vs Impure</h2>
-            <aside class="notes">
-              <ul>
-              </ul>
-            </aside>
-          </section>          
-          <section>
             <h2>Statically vs Dynamically Typed</h2>
+            <p>Has nothing to do with FP! Completely subjective.</p>
+            <p>Some people that think that dealing with compiler errors is too hard.</p>
+            <p>Some people that think that not having types to help reason about and verify code is too hard.</p>
+            <p>You can do FP on either, but be wary that I'm biased to static types (Haskell,Scala,OCaml)</p>
             <aside class="notes">
               <ul>
-                
               </ul>
             </aside>
           </section>
-
+          <section>
+            <h2>Summary</h2>
+            <p>FP is about weakening parts of our code so we can write stronger abstractions around it.</p>
+            <p>By decoupling our code from execution order, we can do lots of wonderful things.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
         </section>        
         <section>
           <section>
-            <h2>Lets get into some Examples!</h2>
+            <h2>Functional Abstractions</h2>
             <aside class="notes">
+              <ul>
+              </ul>
             </aside>
           </section>
         </section>
         <section>
           <section>
             <h2>Collection Libraries</h2>
+            <p>Functional collection libraries are not novel.</p>
+            <p>map, flatMap, filter, reduce/fold, ...</p>
+            <p>Perl,Ruby,Groovy,Python have been doing similar things for a long time.</p>
+            <p>Nested mutable data structures cause big headaches.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Collection Example</h2>
+            <pre><code class="scala">
+val xacts = List(Xact("Buy Pizza",-20,"food"),...)
+
+//Get me the list of accounts -> List[Xact] in descending spend order 
+xacts.filter( 
+  _.amount < 0 //Only count negative transactions (expenses)
+).groupBy( 
+  _.account    //Group each xact by its account
+).toSeq.sortBy( 
+  _._2.map( _.amount ).sum //Sort by the sum of all xacts.
+)
+            </code></pre>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Parallel Collection Example</h2>
+            <pre><code class="scala">
+val xacts = List(Xact("Buy Pizza",-20,"food"),...)
+
+//Get me the list of accounts -> List[Xact] in descending spend order 
+xacts.par.filter( 
+  _.amount < 0 //Only count negative transactions (expenses)
+).groupBy( 
+  _.account    //Group each xact by its account
+).toSeq.sortBy( 
+  _._2.map( _.amount ).sum //Sort by the sum of all xacts.
+)
+            </code></pre>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Parallelisation Remarks</h2>
+            <p>Operations must be pure to make this work.</p>
+            <p>No distribution. Middle ground between single core and MapReduce-style parallelism.</p>
+            <p>Scoobi (in Scala) gets pretty close to this api while distributing computation over hadoop.</p>
+            <p>No FP language can parallelise automatically. Not even haskell.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Explicit Computations</h2>
+            <p>Because we have the power to abstract over computation, we can write our own 'computation types' that describe and constrain what we're doing.</p>
+            <p>Allows us to be precise, while FP abstractions help keep it expressive.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Option / Maybe</h2>
+            <p>I use this heavily in my scala code.</p>
+            <pre><code class="scala">
+def findUserByName( users: Seq[Users] , name:String ): Option[User] = {
+  users.find( _.username == name )
+}
+
+//Convert the optional user to an email address
+findByUserName( users, "bkolera" ).map( _.name ).getOrElse( "Unknown" )
+
+//They even compose. This will return a full option if both are present
+for {
+  creator <- findUserByName( users , creatorUsername )
+  owner   <- findUserByName( users , ownerUsername )
+} yield (creator , owner)
+            </code></pre>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Disjunction / Either</h2>
+            <p>I use this heavily in my scala code.</p>
+            <pre><code class="scala">
+def findUserByName( users: Seq[Users] , name:String ): Error \/ User = {
+  users.find( _.username == name ) match {
+    case None    => -\/( Error(s"User $name not found!") )
+    case Some(u) => \/-( u )
+  }
+}
+
+//Convert the potentially found user to a name
+findByUserName( users, "bkolera" ).map( _.name ).getOrElse( "Unknown" )
+
+//This will return a \/-(String,String) if both are right, else the 
+//first error message will be returned on the left
+for {
+  creator <- findUserByName( users , creatorUsername )
+  owner   <- findUserByName( users , ownerUsername )
+} yield (creator.name , owner.name)
+            </code></pre>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Are you crazy? Why not just use nulls and exceptions?</h2>
+            <p>Because these are explicit. Caller knows what to expect from me.</p>
+            <p>No loss of semantics (except not jumping the stack!) and are actually more expressive.</p>
+            <p>It is also really cool that caller can treat errors exactly like no value (or use the error if they please)!</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Taking this even further!</h2>
+            <p>
+              Can describe lots of computations that have properties like:
+              <ul>
+                <li>Reader: A computation that requires some configuration before producing a value.</li>
+                <li>Writer: A computation logs some state between steps.</li>
+                <li>State: A computation that can mutate state (purely) between steps.</li>
+                <li>A mixture of any of the above mentioned things.</li>
+              </ul>
+            </p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Explicit but Expressive Purity</h2>
+            <p>Data structures that keep stateful computations pure and also </p>
+            <p>I find this very exciting and beautiful!</p>
+            <p>Sure, they aren't going to work for 100% of problems but they are a terrific first step to attempt to keep things pure and composable.</p>
             <aside class="notes">
               <ul>
               </ul>
@@ -216,6 +384,28 @@
         <section>
           <section>
             <h2>Parser Combinators</h2>
+            <pre><code class="haskell">import Text.Parsec
+import Control.Applicative hiding ((<|>))
+
+number         = many1 digit
+positiveNumber = char '+' *> number
+negativeNumber = (:) <$> char '-' <*> number
+
+integer = stringToInteger <$> (positiveNumber <|> negativeNumber <|> number)
+  where stringToInteger = read :: String -> Integer</code></pre>
+            <p>Each bit is ~ String -> Either Error (A,String)</p>
+            <p>Glued together with special combinators (many1, <|>,etc.).</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Parser Combinators - Continued</h2>
+            <p>We'd not be able to break these parsers up if they had internal state.</p>
+            <p>These compose better and more explictly than appending regex strings.</p>
+            <p>Primitives have error handling in them, each knows how to describe what it was looking for and couldn't find.</p>
+            <p>Something special: <$>, *> and <*> aren't even part of parsec.</p>
             <aside class="notes">
               <ul>
               </ul>
@@ -224,7 +414,44 @@
         </section>
         <section>
           <section>
-            <h2>Typeclasses: Compositional Adhoc Polymorphism</h2>
+            <h2>Typeclasses: Open Polymorphism</h2>
+            <pre><code class="language-haskell">class Eq a where
+  (==) :: a -> a -> Bool
+  (/=) :: a -> a -> Bool
+  x /= y = not (x == y)
+
+findThing :: (Eq a) => a -> [a] -> Maybe a
+findThing a = find (a ==)
+</code></pre>
+            <p>We don't need to know what a is. The eq instance can be implemented elsewhere.</p>
+            <p>Abstraction is completely open, yet safe. Unlike java's equality method!</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>These things compose too!</h2>
+            <p>An example from argonaut, an awesome scala JSON parsing library:</p>
+            <pre><code class="scala">case class Account(id: Int, name: String)
+case class Person(name: String, age: Int, accounts: List[Account])
+ 
+implicit def AccountCodecJson =
+  casecodec2(Account.apply, Account.unapply)("id", "name")                
+
+implicit def PersonCodecJson =
+  casecodec3(Person.apply, Person.unapply)("name", "age", "accounts")                
+
+val people    = List(Person("ben","26",List(Account(1,"account1"))),...)
+val prettyStr = people.asJson.spaces2
+val personOpt = prettyPrinted.decodeOption[List[Person]]</code></pre>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>( FP is so awesome it even has decoupled, composable polymorphism. ;) )</h2>
             <aside class="notes">
               <ul>
               </ul>
@@ -234,15 +461,48 @@
         <section>
           <section>
             <h2>Futures</h2>
+            <pre><code class="scala">//Use dispatch to call a REST API and parse its XML
+def temperature( loc:Location ): Future[Double] = ???
+
+def hottest(locs: Location*): = {
+  val locFutures = locs.map( loc => temperature(loc).map( _ -> loc ) )
+  val futureLocs = Future.sequence( locFutures )
+  futureLocs.map( _.maxBy( _.1 ) )
+}</code></pre>
+            <p>We use this a lot for glue APIs that need to hit lots of services.</p>
+            <p>Calls can happen in parallel reducing latency and are also non blocking.</p>
             <aside class="notes">
               <ul>
               </ul>
             </aside>
           </section>
+        </section>
+        <section>
+          <h2>Software Transactional Memory</h2>
+          <pre><code class="clojure">(def account1 (ref 100))
+(def account2 (ref 0))
+
+(defn transfer [amount from to]
+    (dosync
+       (alter from - amount)   ; alter from => (- @from amount)
+       (alter to   + amount))) ; alter to   => (+ @to amount)
+
+;=> @account1 -> 100
+;=> @account2 -> 0
+;=> (transfer 100 account1 account2) -> 100
+;=> @account1 -> 0
+;=> @account2 -> 100</code></pre>
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
         </section>
         <section>
           <section>
             <h2>GHC Optimisations</h2>
+            <p>Because haskell is completely lazy and knows which functions are pure, it can make some very cool improvements to your code.</p>
+            <p>Things like fold fusion, common expression substitution, inlining, etc.</p>
+            <p>Generally have really good performance without trying, except when you have space leaks!</p>
             <aside class="notes">
               <ul>
               </ul>
@@ -251,14 +511,124 @@
         </section>
         <section>
           <section>
-            <h2>Debunking some Myths</h2>
+            <h2>Conclusions</h2>
+          </section>
+          <section>
+            <h2>We are already kinda using FP</h2>
+            <p>Collection libraries</p>
+            <p>Ruby uses loan patterns, etc.</p>            
+            <p>Lack of purity inhibits our ability to fully realise FP abstractions.</p>
             <aside class="notes">
               <ul>
               </ul>
             </aside>
           </section>
           <section>
-            <h2>Pure FP Means no Side effects</h2>
+            <h2>FP is actually not easy to learn!</h2>
+            <p>It forces us to be careful about how we architect our code.</p>
+            <p>Doing the things that we need to do in FP requires us to change the structures and abstractions that we use.</p>
+            <p>This change in thought process is painful, yet wonderful and irreversible.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>It isn't just about concurrency!</h2>
+            <p>... or parallelism</p>            
+            <p>... or testing</p>
+            <p>... or running away from OO</p>
+            <p>... or a general feeling of smugness and superiority ;)</p>
+            <p>It is bigger and more profound than anything like that.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>It isn't about removing side effects!</h2>
+            <p>Side effects are very important!</p>
+            <p>We all have files, databases and sockets to read and write from.</p>
+            <p>We're accepting the fact that functions that have side effects don't compose too well.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>The abstractions are key!</h2>
+            <p>We make as much of our logic referentially transparent to make it easy to reason about.</p>
+            <p>Decoupling our code from time makes our code much easier to reuse and build abstractions over that would otherwise be unimaginable.</p>
+            <p>We strive to use pure code to tame the uncertainty of the outside world (like with STM) and make it as safe and easy to reason about as is possible.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>It isn't really about types!</h2>
+            <p>FP doesn't mean coding with rigid types everywhere.</p>
+            <p>You can have your programmers make there own assertions and reasoning about safeness of code.</p>
+            <p>If you're smart enough to do that, go for it!</p>
+            <p>I'm stupid, I make mistakes all of the time. I prefer to let the computer help.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Where to go from here?</h2>
+          </section>
+          <section>
+            <h2>Books!</h2>
+            <ul> 
+              <li>Haskell: Learn you a Haskel For Great Good</li>
+              <li>Haskell: Real World Haskell</li>
+              <li>Scala: Functional Programming in Scala</li>
+              <li>Clojure: The Joy Of Clojure</li>
+            </ul>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Write Code!</h2>
+            <p>Slow relevant practice is the only way.</p>
+            <p>Use FP for any reports, personal automations or microservices.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Ask Questions!</h2>
+            <p>Lots of very knowledgeable people on our mailing list all to willing to help.</p>
+            <p>Lang specific mailing lists too.</p>
+            <p>Also freenode.org irc channels #haskell, #scala, #fp-in-scala, #bfpg</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Teach others what you learn!</h2>
+            <p>Teaching is the best form of learning, with pretty much everything.</p>
+            <p>Commit yourself to learning something and plan to do a BFPG talk! (We can help and mentor)</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Thanks for listening!</h2>
+            <p>twitter: @benkolera</p>
+            <p>email: ben.kolera@gmail.com</p>
+            <p>Slides: whyfp.benkolera.com</p>
             <aside class="notes">
               <ul>
               </ul>
